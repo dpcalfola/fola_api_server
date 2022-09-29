@@ -11,6 +11,7 @@ COPY ./Django_app /Django_app
 WORKDIR /Django_app
 EXPOSE 48007
 
+ARG DEV=false
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     # Installation psycopg2 dependency applications
@@ -19,8 +20,9 @@ RUN python -m venv /py && \
         build-base postgresql-dev musl-dev && \
     # Installation pip package and pip .dev package
     /py/bin/pip install -r /tmp/requirements.txt && \
-    if [ $DEV = "true"]; \
-        then /py/bin/pip install -r /tmp/requirement.dev.txt ; \
+#    /py/bin/pip install -r /tmp/requirements.dev.txt && \
+    if [ $DEV = "true" ]; \
+        then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     # Remove temp dir
     rm -rf /tmp && \
