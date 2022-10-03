@@ -4,5 +4,6 @@ exclude =
     __pycache__,
     manage.py,
     settings.py,
+    secret_env.py,
 
 max-line-length = 200
