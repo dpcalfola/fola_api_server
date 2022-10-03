@@ -22,7 +22,7 @@ jobs:
           echo "Success making env directory"
           touch Django_app/config/env/secret_env.py
           echo "Success making empty env file"
-          echo ${DJANGO_ENV} >> Django/config/env/secret_env.py
+          echo ${DJANGO_ENV} >> Django_app/config/env/secret_env.py
           echo "Success writing env data"
         env:
           DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
