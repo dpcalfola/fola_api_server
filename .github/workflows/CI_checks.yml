@@ -16,6 +16,16 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Create env file
+        run: |
+          mkdir Django_app/config/env
+          echo "Success making env directory"
+          touch Django_app/config/env/secret_env.py
+          echo "Success making empty env file"
+          echo ${DJANGO_ENV} >> Django_app/config/env/secret_env.py
+          echo "Success writing env data"
+        env:
+          DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
