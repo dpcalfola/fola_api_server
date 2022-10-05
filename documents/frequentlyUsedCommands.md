@@ -8,3 +8,9 @@
     ```shell
     docker-compose down && docker-compose build && docker-compose up
     ``` 
+
+* Test and Lint
+
+  ```shell
+  docker-compose run --rm app sh -c "python manage.py test && flake8"
+  ```
