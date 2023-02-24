@@ -5,3 +5,10 @@
         1.2.1 Add "api_1" to INSTALLED_APPS
 
 
+2. TDD - 1
+    2.1 on api_1/tests.py
+        2.1 Create a test for the endpoint
+            2.1.1 Response 200, Response {"message": "Hello World"}
+            2.1.2 /api_1/<int>/ endpoint returns json data with <int> data
+
+

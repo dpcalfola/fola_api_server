@@ -6,6 +6,7 @@ pytz>=2022.2.1,<2022.3 // Timezone
 
 
 
+< Django >
 
 1. Create a new project
 2. Create and Set a core_app
@@ -25,3 +26,12 @@ pytz>=2022.2.1,<2022.3 // Timezone
         4.1 drf_spectacular.urls
             'api/schema/'
             'api/doc/'
+
+
+
+
+< docker-compose >
+
+1. Create Dockerfile and Docker-compose.yml
+2. Hide environment variables [ **** <--- HERE **** ]
+
