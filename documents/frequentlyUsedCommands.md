@@ -14,3 +14,14 @@
   ```shell
   docker-compose run --rm app sh -c "python manage.py test && flake8"
   ```
+
+
+* Make migrations, Migrate
+
+```shell
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+```
+
+```shell
+docker-compose run --rm app sh -c "python manage.py migrate"
+```
