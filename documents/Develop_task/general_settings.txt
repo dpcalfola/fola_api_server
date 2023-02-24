@@ -1,0 +1,27 @@
+Django>=4.1.0,<4.2 // WEB framework
+djangorestframework>=3.13.0,<3.14.0  // DRF
+psycopg2>=2.9.3,<2.91.0 // PostgreSQL Adapter
+drf-spectacular>=0.15.1,<0.16 // DRF OpenAPI
+pytz>=2022.2.1,<2022.3 // Timezone
+
+
+
+
+1. Create a new project
+2. Create and Set a core_app
+
+3. On Settings.py
+    3.1 Separate INSTALLED_APPS into PACKAGE_APPS + THIRD_PARTY_APP + PROJECT_APP
+    3.2 New app declaration
+        3.2.1 To PROJECT_APPS
+            core_app
+        3.2.2 THIRD_PARTY_APPS
+            'rest_framework',
+            'drf_spectacular'
+    3.3 Insert REST_FRAMEWORK= {... } on the bottom of settings.py
+
+4. Routing
+    4.1 on config/urls.py
+        4.1 drf_spectacular.urls
+            'api/schema/'
+            'api/doc/'
