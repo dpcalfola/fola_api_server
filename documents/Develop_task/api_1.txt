@@ -1,0 +1,4 @@
+1. Start app "api_1"
+    1.1 "docker-compose run --rm app sh -c "python manage.py startapp api_1""
+        1.1.1 app name "api-1" is denied, Not a valid
+    1.2 Add "api_1" to INSTALLED_APPS on Settings.py
