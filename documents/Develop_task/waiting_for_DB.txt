@@ -1,0 +1,15 @@
+< The plan is that >
+1. Merge all works to develop branch
+2. Make branch about this issue and fix it
+3. Merge to develop branch and test it
+4. If it works, merge to main branch
+
+
+
+< The plan as practical >
+1. Make Test code for wait_for_db.py
+2. Make wait_for_db.py that is django custom command
+    2.1 This code is executable as "python manage.py wait_for_db"
+    2.2 This code makes delay for 1 second and try to connect to db until it is connected
+3. On CI server, run "python manage.py wait_for_db" before run test
+    3.1 Finally, CI test command would be "python manage.py wait_for_db && python manage.py test"
