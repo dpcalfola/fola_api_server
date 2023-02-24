@@ -8,7 +8,7 @@ class ResponseTests(TestCase):
         """
         Test that the /api_1/ endpoint returns expected message.
         """
-        response = self.client.get('/api_1/')
+        response = self.client.get('/api-1/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data, {'message': 'Hello, REST API!'})
 
