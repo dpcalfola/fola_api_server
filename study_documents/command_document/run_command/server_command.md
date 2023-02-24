@@ -7,3 +7,10 @@
 ```shell
 docker-compose up
 ```
+
+
+
+### Clear compose container and restart
+```shell
+docker-compose down && docker-compose build --no-cache && docker-compose up
+```

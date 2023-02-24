@@ -1,4 +1,5 @@
-FROM python:3.11.0rc2-alpine3.16
+#FROM python:3.11.0rc2-alpine3.16
+FROM python:3.10.10-alpine3.17
 
 MAINTAINER FolaFlor
 LABEL maintainer="https://dpcalfola.tistory.com/"

@@ -6,7 +6,7 @@
 * Clear compose container and restart
     
     ```shell
-    docker-compose down && docker-compose build && docker-compose up
+    docker-compose down && docker-compose build --no-cache && docker-compose up
     ``` 
 
 * Test and Lint
