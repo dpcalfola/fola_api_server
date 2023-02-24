@@ -19,9 +19,10 @@ RUN python -m venv /py && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-build-deps \
         build-base postgresql-dev musl-dev && \
-    # Installation pip package and pip .dev package
-    /py/bin/pip install -r /tmp/requirements.txt && \
-#    /py/bin/pip install -r /tmp/requirements.dev.txt && \
+    # --use-pep517 option is for psycopg2 \
+    # https://github.com/pypa/pip/issues/8559
+    /py/bin/pip install -r /tmp/requirements.txt --use-pep517 && \
+    # Install dev packages if ARG DEV is true
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
