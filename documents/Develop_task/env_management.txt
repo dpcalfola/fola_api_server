@@ -1,0 +1,12 @@
+< Hide DB info >
+
+
+
+Issue #1 - Exposed DB info on docker-compose.yml
+
+1. make .env file and add info data
+    1.1 VARIABLE=VALUE
+2. on docker-compose.yml
+    2.1 add ${VARIABLE}
+3. on Dockerfile
+    3.1 add ${VARIABLE} and ARG VARIABLE
