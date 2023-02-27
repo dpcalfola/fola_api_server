@@ -6,28 +6,32 @@ services:
       context: .
       args:
         - DEV=true
+        - USERNAME=${USERNAME}
     ports:
-      - "48007:8000"
+      - "${SERVICE_PORT}:8000"
     volumes:
       - ./Django_app:/Django_app
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      sh -c "echo ${TEST_VARIABLE} && python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db
-      - DB_NAME=fola_api_db_dev
-      - DB_USER=db_user_dev
-      - DB_PASS=asz;dukirgh2
+      - DB_NAME=${POSTGRES_DB_NAME}
+      - DB_USER=${POSTGRES_DB_USER}
+      - DB_PASS=${POSTGRES_DB_PASSWORD}
     depends_on:
       - db
 
   db:
     image: postgres:15.2-alpine3.17
+    ports:
+      - "${POSTGRES_DB_PORT}:5432"
     volumes:
       - fola-api-db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=fola_api_db_dev
-      - POSTGRES_USER=db_user_dev
-      - POSTGRES_PASSWORD=asz;dukirgh2
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+      - POSTGRES_USER=${POSTGRES_DB_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_DB_PASSWORD}
+
 
 volumes:
   fola-api-db-data:

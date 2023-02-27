@@ -12,6 +12,8 @@ WORKDIR /Django_app
 EXPOSE 48007
 
 ARG DEV=false
+ARG USERNAME
+
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     # Installation psycopg2 dependency applications
@@ -31,8 +33,8 @@ RUN python -m venv /py && \
     adduser \
         --disabled-password \
         --no-create-home \
-        Django-user
+        $USERNAME
 
 ENV PATH="/py/bin:$PATH"
 
-USER Django-user
+USER ${USERNAME}
