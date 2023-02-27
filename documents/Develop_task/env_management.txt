@@ -10,3 +10,11 @@ Issue #1 - Exposed DB info on docker-compose.yml
     2.1 add ${VARIABLE}
 3. on Dockerfile
     3.1 add ${VARIABLE} and ARG VARIABLE
+
+
+
+
+Issue #2 - CI need env data but hided
+
+1. Set fake env data on CI setting file
+    It should be runs-on level
