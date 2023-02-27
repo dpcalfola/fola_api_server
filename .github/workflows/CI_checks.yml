@@ -14,8 +14,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Create env file
         run: |
           mkdir Django_app/config/env
@@ -26,7 +28,16 @@ jobs:
           echo "Success writing env data"
         env:
           DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
+          POSTGRES_DB_NAME: ${{ secrets.CI_ENV.POSTGRES_DB_NAME }}
+          POSTGRES_DB_USER: ${{ secrets.CI_ENV.POSTGRES_DB_USER }}
+          POSTGRES_DB_PASSWORD: ${{ secrets.CI_ENV.POSTGRES_DB_PASSWORD }}
+          POSTGRES_DB_PORT: ${{ secrets.CI_ENV.POSTGRES_DB_PORT }}
+          SERVICE_PORT: ${{ secrets.CI_ENV.SERVICE_PORT }}
+          USERNAME: ${{ secrets.CI_ENV.USERNAME }}
+          TEST_VARIABLE: ${{ secrets.CI_ENV.TEST_VARIABLE }}
+
       - name: Test
         run: docker-compose run --rm app sh -c "sleep 7; python manage.py wait_for_db && python manage.py test"
+
       - name: Lint
         run: docker-compose run --rm app sh -c "flake8"
