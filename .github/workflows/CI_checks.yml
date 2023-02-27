@@ -8,6 +8,14 @@ jobs:
   test:
     name: Test and Lint
     runs-on: ubuntu-22.04
+    env:
+      POSTGRES_DB_NAME: fake_postgres_name
+      POSTGRES_DB_USER: fake_postgres_user
+      POSTGRES_DB_PASSWORD: fake_postgres_password
+      POSTGRES_DB_PORT: 5432
+      SERVICE_PORT: 8000
+      USERNAME: fake_username
+      TEST_VARIABLE: env_data_loaded
     steps:
       - name: Login to Dockerhub
         uses: docker/login-action@v2
@@ -17,15 +25,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Create CI env file
-        run: |
-          touch .env
-          echo "Success making empty CI env file"
-          echo ${CI_ENV} >> .env
-          echo "Success writing env data"
-        env:
-          CI_ENV: ${{ secrets.CI_ENV }}
 
       - name: Create Django env file
         run: |
