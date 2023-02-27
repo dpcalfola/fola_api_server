@@ -24,6 +24,8 @@ jobs:
           echo "Success making empty CI env file"
           echo ${CI_ENV} >> .env
           echo "Success writing env data"
+          pwd
+          ls -la
         env:
           CI_ENV: ${{ secrets.CI_ENV }}
 
