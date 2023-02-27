@@ -26,6 +26,7 @@ jobs:
           echo ${CI_ENV} >> .env
           pwd
           ls -la
+          cat .env
         env:
           CI_ENV: ${{ secrets.CI_ENV }}
 
