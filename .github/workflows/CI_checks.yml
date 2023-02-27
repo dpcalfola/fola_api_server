@@ -20,14 +20,32 @@ jobs:
 
       - name: Create CI env file
         run: |
+          echo "making empty CI env file"
           touch .env
-          echo "Success making empty CI env file"
+          echo "writing env data"
           echo ${CI_ENV} >> .env
-          echo "Success writing env data"
           pwd
           ls -la
         env:
           CI_ENV: ${{ secrets.CI_ENV }}
+
+      - name: Install dotenv from npm
+        run: npm install --global dotenv
+
+      - name: Load env from .env file
+        run: |
+          echo "Loading env from .env file"
+          dotenv -f .env export
+
+      - name: Set env
+        run: |
+          echo "Setting env"
+          source<(dotenv -f .env export) 
+
+      - name: Checkup env variables
+        run: |
+          echo "Checking env variables"
+          echo "TEST_VARIABLE: ${TEST_VARIABLE}"
 
       - name: Create Django env file
         run: |
