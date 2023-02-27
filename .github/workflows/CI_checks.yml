@@ -18,23 +18,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Create env file
+      - name: Create CI env file
         run: |
-          mkdir Django_app/config/env
-          echo "Success making env directory"
-          touch Django_app/config/env/secret_env.py
-          echo "Success making empty env file"
-          echo ${DJANGO_ENV} >> Django_app/config/env/secret_env.py
+          touch .env
+          echo "Success making empty CI env file"
+          echo ${CI_ENV} >> .env
           echo "Success writing env data"
         env:
+          CI_ENV: ${{ secrets.CI_ENV }}
+
+      - name: Create Django env file
+        run: |
+          mkdir Django_app/config/env
+          echo "Success making Django env directory"
+          touch Django_app/config/env/secret_env.py
+          echo "Success making empty Django env file"
+          echo ${DJANGO_ENV} >> Django_app/config/env/secret_env.py
+          echo "Success writing Django env data"
+        env:
           DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
-          POSTGRES_DB_NAME: ${{ secrets.POSTGRES_DB_NAME }}
-          POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
-          POSTGRES_DB_PASSWORD: ${{ secrets.POSTGRES_DB_PASSWORD }}
-          POSTGRES_DB_PORT: ${{ secrets.POSTGRES_DB_PORT }}
-          SERVICE_PORT: ${{ secrets.SERVICE_PORT }}
-          USERNAME: ${{ secrets.USERNAME }}
-          TEST_VARIABLE: ${{ secrets.TEST_VARIABLE }}
 
       - name: Test
         run: docker-compose run --rm app sh -c "sleep 7; python manage.py wait_for_db && python manage.py test"
